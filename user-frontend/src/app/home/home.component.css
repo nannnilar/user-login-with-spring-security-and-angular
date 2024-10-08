@@ -1,0 +1,33 @@
+#carouselExample {
+  margin-top: 20px;
+  max-width: 600px; /* Set the maximum width for the carousel */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.carousel-inner img {
+  width: 50%;
+  height: 300px; /* Adjust the height as needed */
+  object-fit: cover;
+  border-radius: 10px; /* Add border-radius for rounded corners */
+}
+
+.carousel-control-prev, .carousel-control-next {
+  width: 5%;
+  color: #fff; /* Change the color of the control buttons */
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-color: #edeaea; /* Change the background color of the control button icons */
+  border-radius: 50%; /* Make the control button icons circular */
+  padding: 10px; /* Add padding for better visibility */
+}
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+  color: #fff; /* Change the color on hover for better contrast */
+}
+
+h2 {
+  color: indigo;
+  text-align: center; /* Center the heading */
+}

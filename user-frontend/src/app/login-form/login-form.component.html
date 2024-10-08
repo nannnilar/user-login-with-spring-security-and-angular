@@ -1,0 +1,79 @@
+<app-nav></app-nav>
+
+<div class="row justify-content-center my-5">
+  <div class="col-md-6">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"  class="card p-4 shadow">
+
+      <div class="text-center mb-4">
+        <img src="/assets/images/logo.png" alt="Logo" class="img-fluid" style="max-height: 100px;">
+      </div>
+
+      <!-- <div class="form-group">
+        <label for="loginId">Login ID:</label>
+        <input type="text" id="loginId" class="form-control rounded" formControlName="loginId" required>
+        <div *ngIf="loginForm?.get('loginId')?.hasError('required') && loginForm.get('loginId')?.touched"
+             class="text-danger">
+          Login ID is required.
+        </div>
+      </div> -->
+
+      <div class="form-group">
+        <label for="loginId">Login ID:</label>
+        <div class="input-group align-items-end">
+          <input type="text" id="loginId" class="form-control rounded" formControlName="loginId" required>
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <i class="bi bi-person"></i>
+            </span>
+          </div>
+        </div>
+        <div *ngIf="loginForm?.get('loginId')?.hasError('required') && loginForm.get('loginId')?.touched"
+             class="text-danger">
+          Login ID is required.
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <div class="input-group align-items-end">
+          <input type="{{ passwordFieldType }}" id="password" class="form-control rounded" formControlName="password" required>
+          <div class="input-group-append">
+            <span class="input-group-text" (click)="togglePasswordVisibility()">
+              <i class="bi " [ngClass]="{'bi-eye': showPassword, 'bi-eye-slash': !showPassword}"></i>
+            </span>
+          </div>
+        </div>
+        <div *ngIf="loginForm?.get('password')?.hasError('required') && loginForm.get('password')?.touched"
+             class="text-danger">
+          Password is required.
+        </div>
+      </div>
+
+
+      <!-- <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" class="form-control rounded" formControlName="password" required>
+        <div *ngIf="loginForm?.get('password')?.hasError('required') && loginForm.get('password')?.touched"
+             class="text-danger">
+          Password is required.
+        </div>
+      </div> -->
+
+      <div class="row mx-0 mt-3">
+        <a [routerLink]="['']" class="btn btn-primary btn-sm col-md col-sm m-2">Cancel</a>
+        <button class="btn btn-primary btn-sm col-md col-sm m-2" type="submit" >Sign In</button>
+      </div>
+
+      <br>
+      <div class="alert alert-danger d-flex align-items-center" role="alert"*ngIf="message" >
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+          <div > {{message}}</div>
+            </div>
+     
+    </form>
+  </div>
+</div>
+
+<br>
+

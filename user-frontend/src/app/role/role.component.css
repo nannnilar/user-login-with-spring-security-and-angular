@@ -1,0 +1,44 @@
+form {
+  max-width: 400px;
+  margin: auto;
+  box-shadow: inset;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+.card {
+  max-width: 300px;
+  margin: auto;
+}
+
+button{
+  /* width: 100%; */
+  padding: 8px;
+  margin-top: 15px;
+  /* float: right; */
+  margin-bottom: 15px;
+
+
+}
+.btn {
+  padding: 8px;
+  margin-top: 15px;
+  color: blue;
+  margin-bottom: 15px;
+}
+/* .container{
+  background-color: antiquewhite
+} */
+.list {
+  color: antiquewhite;
+}
+
+

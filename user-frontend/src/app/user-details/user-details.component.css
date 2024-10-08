@@ -1,0 +1,52 @@
+form {
+  max-width: 400px;
+  margin: auto;
+  /* box-shadow: inset; */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+.card {
+  max-width: 450px;
+  margin: auto;
+}
+
+button{
+  /* width: 100%; */
+  padding: 8px;
+  margin-top: 15px;
+  /* float: right; */
+  margin-bottom: 15px;
+
+
+}
+.btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: 1px solid blue;
+  border-radius: 5px;
+  color: blue;
+  background-color: #fff;
+  cursor: pointer;
+}
+.list {
+  color: antiquewhite;
+}
+i {
+  font-size: large;
+}
+

@@ -1,0 +1,151 @@
+<app-nav></app-nav>
+
+<div class="container-fluid">
+  <div class="d-flex justify-content-between align-items-center my-3">
+    <div class="flex-grow-1">
+      <h1 class="display-4">User Lists</h1>
+    </div>
+    <div class="row align-items-end justify-content-end" *ngIf="role === 'ADMIN'">
+      <div class="col-auto">
+        <button class="btn btn-secondary me-2" (click)="exportToExcel()">
+          <i class="bi bi-file-arrow-up"></i> Export
+        </button>
+      </div>
+
+      <div class="col-auto">
+        <!-- <button class="btn btn-warning btn-sm" (click)="importFile()">
+          <i class="bi bi-file-arrow-down"></i> Import
+        </button> -->
+
+  <button type="button" class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <i class="bi bi-file-arrow-down"></i> Import
+  </button>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Import Users From Excel</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="file" (change)="onFileChange($event)" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" ><i class="bi bi-x-lg"></i>Cancel</button>
+          <button type="button" class="btn btn-warning btn-sm" (click)="importFile()"><i class="bi bi-file-arrow-down"></i> Import</button>
+        </div>
+      </div>
+    </div>
+  </div>
+      </div>
+
+
+    </div>
+
+    <div class="flex-grow-1">
+      <h3 class="badge bg-secondary">
+        This is {{ role | lowercase}} role.
+      </h3>
+    </div>
+
+    <div class="col-auto ms-auto me-2">
+      <form class="d-flex" role="search" >
+        <div class="input-group">
+          <input class="form-control" [(ngModel)]="searchKey" name="searchKey" type="text" placeholder="Search Users..." aria-label="Search">
+          <button class="btn btn-sm" style="background-color: rgb(76, 92, 237);" type="submit" (click)="loadUsers()">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <button class="btn btn-primary me-4" [routerLink]="['/user']"  *ngIf="role === 'ADMIN'">
+        <i class="bi bi-plus-lg"></i> Add New
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container-fluid" *ngIf="users.length > 0">
+  <table class="table table-bordered  ">
+
+    <thead >
+      <tr>
+        <th>ID</th>
+        <th>Login Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Role</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.id}}</td>
+        <td>{{user.loginId}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.address}}</td>
+        <td *ngFor="let role of user.roles;"><p >{{role.name}}</p></td>
+        <td >
+          <!-- <a class="btn btn-sm btn-warning me-2"
+            [routerLink]="['/update', user.id]"><i class="bi-pencil"></i> </a> -->
+          <a class="btn btn-sm my-2 me-2"
+   [ngClass]="{'btn-warning': role === 'ADMIN', 'btn-secondary': role === 'EMPLOYEE'}"
+   [routerLink]="role === 'ADMIN' ? ['/update', user.id] : ['/updated', user.id]">
+
+  <i [ngClass]="{'bi bi-pencil': role === 'ADMIN', 'bi bi-check-square': role === 'EMPLOYEE'}"></i>
+</a>
+
+        <!-- <a class="btn btn-sm my-2 me-2"  [ngClass]="{'btn-warning': role === 'ADMIN', 'btn-secondary': role === 'EMPLOYEE'}"
+         [routerLink]=" ['/update', user.id]">
+         <i *ngIf="role === 'ADMIN'" class="bi bi-pencil"></i>
+         <i *ngIf="role === 'EMPLOYEE'" class="bi bi-check-square"></i>
+
+        </a> -->
+        <button *ngIf="role === 'ADMIN'" class="btn btn-sm btn-danger" (click)="deleteUser(user.id!)"><i class="bi bi-trash"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="" *ngIf="users.length > 0">
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 0">
+        <button class="page-link" (click)="previousPage()" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </button>
+      </li>
+      <li class="page-item" *ngFor="let pageNumber of getPagesArray()" [class.active]="pageNumber === currentPage">
+        <button class="page-link" (click)="goToPage(pageNumber)">{{ pageNumber + 1 }}</button>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+        <button class="page-link" (click)="nextPage()" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+</div>
+
+<div class="conatiner-fluid me-2 ms-2">
+  <div *ngIf="users.length === 0">
+    <div class="alert alert-danger d-flex align-items-center " role="alert">
+      <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        No Users Found!!!
+    </div>
+  </div>
+
+</div>

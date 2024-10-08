@@ -1,0 +1,15 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['']">
+      <img src="/favicon.ico" alt="" width="30" height="24" class="d-inline-block align-text-top">
+      Home
+    </a>
+
+        <form class="d-flex">
+      <button *ngIf="!isLoggedIn" class="btn btn-outline me-4" [routerLink]="['/login-form']" type="submit">Sign In</button>
+      <button *ngIf="isLoggedIn" class="btn btn-outline" (click)="logout()" [routerLink]="['']" type="reset">Sign Out</button>
+      <!-- <button class="btn btn-outline" [routerLink]="['/user']" type="submit">Sign Up</button> -->
+    </form>
+  </div>
+</nav>
+

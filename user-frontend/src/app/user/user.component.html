@@ -1,0 +1,275 @@
+<app-nav></app-nav>
+
+<div class="container my-3">
+  <h1 class="text-center display-4 mb-3">User Registration Form</h1>
+
+  <form action="" [formGroup]="userForm" (ngSubmit)="onSubmit()"  class="card p-4 shadow">
+
+    <div class="form-group">
+      <label for="loginId">Login ID:</label>
+      <div class="input-group align-items-end">
+        <input type="text" id="loginId" class="form-control rounded" formControlName="loginId" required>
+        <div class="input-group-append">
+          <span class="input-group-text">
+            <i class="bi bi-person"></i>
+          </span>
+        </div>
+      </div>
+      <div *ngIf="userForm?.get('loginId')?.hasError('required') && userForm.get('loginId')?.touched"
+           class="text-danger">
+        Login ID is required.
+      </div>
+    </div>
+    <!-- <label for="loginId">Login ID</label>
+    <input
+      type="text"
+      id="loginId"
+      class="rounded"
+      formControlName="loginId"
+      required
+    />
+    <div
+      class="check"
+      *ngIf="
+        userForm?.get('loginId')?.hasError('required') &&
+        userForm.get('loginId')?.touched
+      "
+    >
+      <small
+        class="text-danger"
+        *ngIf="userForm.get('loginId')?.hasError('required')"
+      >
+        Please Enter Login ID.
+      </small>
+    </div> -->
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <div class="input-group align-items-end">
+        <input type="{{ passwordFieldType }}" id="password" class="form-control rounded" formControlName="password" required>
+        <div class="input-group-append">
+          <span class="input-group-text" (click)="togglePasswordVisibility()">
+            <i class="bi " [ngClass]="{'bi-eye': showPassword, 'bi-eye-slash': !showPassword}"></i>
+          </span>
+        </div>
+      </div>
+      <div *ngIf="userForm?.get('password')?.hasError('required') && userForm.get('password')?.touched"
+           class="text-danger">
+        Password is required.
+      </div>
+
+      <div *ngIf="userForm.get('password')?.hasError('min') && userForm.get('password')?.touched">
+        <small class="text-danger">
+          Password must be at least 4 characters long.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="comfirmPassword">Confirm Password:</label>
+      <div class="input-group align-items-end">
+        <input type="{{ comfirmPasswordFieldType }}" id="comfirmPassword" class="form-control rounded" formControlName="comfirmPassword" required>
+        <div class="input-group-append">
+          <span class="input-group-text" (click)="toggleComfirmPasswordVisibility()">
+            <i class="bi " [ngClass]="{'bi-eye': showComfirmPassword, 'bi-eye-slash': !showComfirmPassword}"></i>
+          </span>
+        </div>
+      </div>
+      <div *ngIf="userForm?.get('comfirmPassword')?.hasError('required') && userForm.get('comfirmPassword')?.touched"
+           class="text-danger">
+        Password is required.
+      </div>
+
+      <div *ngIf="userForm.get('comfirmPassword')?.hasError('minlength') && userForm.get('comfirmPassword')?.touched">
+        <small class="text-danger">
+          Password must be at least 4 characters long.
+        </small>
+      </div>
+
+      <div *ngIf="userForm.get('comfirmPassword')?.hasError('mismatch') && userForm.get('comfirmPassword')?.touched">
+        <small class="text-danger">
+          Passwords must match.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <div class="input-group align-items-end">
+        <input type="text" id="name" class="form-control rounded" formControlName="name" required>
+        <div class="input-group-append">
+          <span class="input-group-text">
+            <i class="bi bi-person-check"></i>
+          </span>
+        </div>
+      </div>
+      <div *ngIf="userForm?.get('name')?.hasError('required') && userForm.get('name')?.touched"
+           class="text-danger">
+        Name is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <div class="input-group align-items-end">
+        <input type="email" id="email" class="form-control rounded" formControlName="email" required>
+        <div class="input-group-append">
+          <span class="input-group-text">
+            <i class="bi bi-envelope-arrow-up"></i>
+          </span>
+        </div>
+      </div>
+      <div *ngIf="userForm?.get('email')?.hasError('required') && userForm.get('email')?.touched"
+           class="text-danger">
+        Email is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <div class="input-group align-items-end">
+        <textarea name="address" id="address" cols="48" rows="4" class="form-control rounded" formControlName="address" required></textarea>
+        <!-- <div class="input-group-append">
+          <span class="input-group-text">
+            <i class="bi bi-house-check"></i>
+          </span>
+        </div> -->
+      </div>
+      <div *ngIf="userForm?.get('address')?.hasError('required') && userForm.get('address')?.touched"
+           class="text-danger">
+        Address is required.
+      </div>
+    </div>
+
+
+
+    <!-- <label for="name">Name</label>
+    <input
+      type="text"
+      id="name"
+      class="rounded"
+      formControlName="name"
+      required
+    />
+    <div
+      class="check"
+      *ngIf="
+        userForm.get('name')?.hasError('required') &&
+        userForm.get('name')?.touched
+      "
+    >
+      <small
+        class="text-danger"
+        *ngIf="userForm.get('name')?.hasError('required')"
+      >
+        Please Enter Name.
+      </small>
+    </div> -->
+
+    <!-- <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      formControlName="email"
+      class="rounded"
+      required
+    />
+    <div
+      class="check"
+      *ngIf="
+        userForm?.get('email')?.hasError('required') &&
+        userForm.get('email')?.touched
+      "
+    >
+      <small
+        class="text-danger"
+        *ngIf="userForm.get('email')?.hasError('required')"
+      >
+        Please Enter Your Email
+      </small>
+    </div> -->
+
+    <!-- <label for="address">Address</label>
+    <textarea
+      name="address"
+      id="address"
+      cols="48"
+      rows="4"
+      class="rounded"
+      formControlName="address"
+      required
+    ></textarea>
+    <div
+      class="check"
+      *ngIf="
+        userForm?.get('address')?.hasError('required') &&
+        userForm.get('address')?.touched
+      "
+    >
+      <small
+        class="text-danger"
+        *ngIf="userForm.get('address')?.hasError('required')"
+      >
+        Please Enter Your Address
+      </small>
+    </div> -->
+
+    <!-- <label>Select Role</label>
+    <select
+      name="roleId"
+      id="roleId"
+      class="form-select rounded"
+      (change)="userForm.get('roleId')?.setValue(getSelectedRole($event))"
+      formControlName="roleId"
+      required
+    >
+      <option [value]="role.id" *ngFor="let role of roles" [id]="role.id">
+        {{ role.name }}
+      </option>
+    </select> -->
+
+    <div class="form-group">
+      <label for="email">Select Role:</label>
+      <div class="input-group align-items-end">
+        <select
+        name="roleId"
+        id="roleId"
+        class="form-select rounded"
+        (change)="userForm.get('roleId')?.setValue(getSelectedRole($event))"
+        formControlName="roleId"
+        required
+      >
+        <option [value]="role.id" *ngFor="let role of roles" [id]="role.id">
+          {{ role.name }}
+        </option>
+      </select>
+      <div class="input-group-append">
+          <span class="input-group-text">
+            <i class="bi bi-person-fill-exclamation"></i>
+          </span>
+        </div>
+      </div>
+      <div *ngIf="userForm?.get('roleId')?.hasError('required') && userForm.get('roleId')?.touched"
+           class="text-danger">
+        Please select user role!!!
+      </div>
+    </div>
+
+
+    <div class="row mr-2 my-2" >
+      <input
+  [routerLink]="isUpdate ? ['/user-list'] : ['']"
+  class="btn btn-primary  btn-sm col m-2"
+  type="button"
+  value="Cancel"
+/>
+    <!-- <input [style.pointer-events]="isUpdate && role === 'EMPLOYEE' ? 'none' : 'auto'"
+      class="btn btn-primary btn-sm col m-2" type="submit" [value]="isUpdate ? 'Update' : 'Register'" /> -->
+
+      <input  class="btn btn-primary btn-sm col m-2" [value]="isUpdate ? 'Update' : 'Register'"
+       type="submit"/>
+    </div>
+  </form>
+</div>
+
+<!-- [value]="isUpdate ? 'Update' : 'Register'"  -->

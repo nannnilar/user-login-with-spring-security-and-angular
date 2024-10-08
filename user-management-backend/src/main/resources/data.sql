@@ -1,0 +1,13 @@
+INSERT INTO roles (id, type, name)
+VALUES
+
+    (2, 'ADMIN', 'HR ADMIN'),
+    (3, 'ADMIN', 'SYSTEM ADMIN'),
+    (4, 'EMPLOYEE', 'JAVA DEVELOPER'),
+    (5, 'EMPLOYEE', 'ANGULAR DEVELOPER'),
+    (6, 'EMPLOYEE', 'NODE JS DEVELOPER'),
+    (7, 'EMPLOYEE', 'SOFTWARE ENGINEER'),
+    (8, 'EMPLOYEE', 'UI UX DESIGNER'),
+    (9, 'EMPLOYEE', 'GRAPHIC DESIGNER'),
+    (10, 'USER', 'NORMAL USER'),
+    (11, 'USER', 'GUEST');
